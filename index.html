@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+<div id="header">
+    <div class="container">
+        <!-- <nav>
+            <img src="images/logo.png" class="logo">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav> -->
+        <div class="header-text">
+            <p>Software Engineer | Dedicated learner | Challenge-seeker</p>
+            <h1>Hi, I'm <span>Chinmayee Chougale</span></h1>
+        </div>
+    </div>
+</div>
+<!-- --------------About Me-------------------- -->
+<div id="about">
+    <div class="container">
+        <div class="row">
+            <div class="about-col-1">
+                <img src="images/me.png" alt="Image">
+            </div>
+            <div class="about-col-2">
+                <h1 class="sub-title">About Me</h1>
+                <p class="content">I’m a 3rd-year Information Science and Engineering student with a strong academic foundation and hands-on project experience. Passionate about problem-solving, technology, and innovation, I thrive in collaborative environments and enjoy tackling challenges that enhance user experiences, efficiency, and community impact. Eager to apply my skills in real-world projects, continuously learn, and contribute meaningfully to impactful solutions.</p>
+                
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                    <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                    <p class="tab-links" onclick="opentab('education')">Education</p>
+                </div>
+                <div class="tab-contents active-tab" id="skills">
+                    <ul>
+                        <li><span>Programming Languages</span><br>Python, Java, C</li>
+                        <li><span>Operating Systems</span><br> Windows, Linux</li>
+                        <li><span>Application packages</span><br>Visual Studio, Microsoft Office, MySQL</li>
+                        <li><span>Soft Skills</span><br>Problem Solving, Event Organizing, Event Planning</li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="experience">
+                    <ul>
+                        <li><span>2023 - Present</span><br>Creative sub-lead<br><samp>ME-RIISE Foundation (a section-8 company)</samp></li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="education">
+                    <ul>
+                        <li><span>2022 – Present</span><br>Malnad College of Engineering<br><samp>B.E in Information Science, CGPA: 9.17</samp></li>
+                        <li><span>2021 – 2022</span><br>Govt. P U College, Shravanabelagola<br><samp>PCMB, Percentage: 96.33%</samp></li>
+                        <li><span>2019 – 2020</span><br>Govt. Girls High School, Shravanabelagola<br><samp>SSLC, Percentage: 97.76%</samp></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- -------------------Contact--------------------------->
+ <div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Contact Me</h1>
+                <p><i class="fa-solid fa-paper-plane"></i>chinmayeechougale2025@gmail.com</p>
+                <p><i class="fa-solid fa-phone"></i>9481105604</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/chinmayee_chougale?igsh=enRhdW82ZTA3Ymhh"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/chinmayee-chougale-7a611b268?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fa-brands fa-linkedin"></i></a> 
+                </div>
+                <a href="Portfolio\Chinmayee.pdf" class="btn" download>Download CV</a>
+            </div>
+            <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="Email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+                <span id="msg"></span>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>Copyright @ Chougale. Made with <i class="fa-solid fa-heart"></i> by Chinmayee Chougale</p>
+    </div>
+ </div> 
+<script>
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+    
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+</script>
+
+<!-- <form name="submit-to-google-sheet">
+    <input name="Email" type="email" placeholder="Email" required>
+    <button type="submit">Send</button>
+</form> -->
+  
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxGqcMcnG4zMhg6pUMgeha-ILeOit8NYUsXEpRrpNouuKhDU4S-9T6V5yhFKJqzq39-6g/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML="Message sent successfully"
+            setTimeout(function(){
+                msg.innerHTML=""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+
+</body>
+</html>
